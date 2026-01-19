@@ -1,0 +1,80 @@
+flutter/ephemeral
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+.vscode/
+# Note: If you work in a team, some prefer to commit .vscode/settings.json. 
+# If so, ignore only .vscode/ except settings.json
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter/Dart related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/Ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/flutter_settings.json
+**/ios/packages/
+**/ios/DerivedData/
+**/android/app/src/main/java/io/flutter/plugins/
+**/android/local.properties
+**/android/key.properties
+**/android/app/**/generated.gradle
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+app.*.map.json
+
+# Executables and archives
+*.apk
+*.aab
+*.exe
+*.zip
+*.tar.gz
+*.rar
+*.ipa
+
+# macOS specific
+.DS_Store
+**/macos/Flutter/ephemeral/
+**/macos/Generated.xcconfig
+**/macos/flutter_export_environment.sh
+
+# Linux specific
+**/linux/flutter/ephemeral/
+
+# Windows specific
+**/windows/flutter/ephemeral/
+**/windows/CMakeCache.txt
+**/windows/CMakeFiles/
+**/windows/CMakeScripts/
+**/windows/cmake_install.cmake
+**/windows/install/
+
+# Secrets (Add your own secret files here)
+.env
