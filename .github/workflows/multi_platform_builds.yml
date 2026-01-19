@@ -43,14 +43,36 @@ jobs:
       - name: Build macOS
         run: flutter build macos --release
       
-      - name: Upload macOS App
+      - name: Create DMG
+        run: |
+          # 1. Install the tool
+          brew install create-dmg
+          
+          # 2. Define variables for clarity
+          APP_PATH="build/macos/Build/Products/Release/voxy.app"
+          DMG_NAME="Voxy-Installer.dmg"
+          
+          # 3. Create the DMG
+          # --volname: The name of the disk when it mounts
+          # --window-size: Size of the installer window
+          # --icon-size: Size of your app icon inside the window
+          # --app-drop-link: Coordinates for the 'Applications' shortcut
+          create-dmg \
+            --volname "Voxy Installer" \
+            --window-pos 200 120 \
+            --window-size 600 400 \
+            --icon-size 100 \
+            --icon "voxy.app" 175 120 \
+            --hide-extension "voxy.app" \
+            --app-drop-link 425 120 \
+            "$DMG_NAME" \
+            "$APP_PATH"
+
+      - name: Upload macOS DMG
         uses: actions/upload-artifact@v4
         with:
-          name: Voxy-macOS
-          # Pointing directly to the .app folder and using a trailing slash 
-          # tells the action to upload the CONTENTS of this path as the root.
-          path: build/macos/Build/Products/Release/voxy.app/
-          include-hidden-files: true
+          name: Voxy-macOS-Installer
+          path: Voxy-Installer.dmg
 
       # --- iOS SECTION ---
       - name: Build iOS
