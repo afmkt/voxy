@@ -78,14 +78,21 @@ jobs:
       - name: Build iOS
         run: flutter build ios --release --no-codesign
       
-      - name: Upload iOS App
+      - name: Create Unsigned IPA
+        run: |
+          mkdir -p Payload
+          # Copy the .app folder into the Payload folder
+          cp -r build/ios/iphoneos/Runner.app Payload/
+          # Zip the Payload folder and rename to .ipa
+          zip -r Voxy-iOS-Unsigned.ipa Payload
+          
+      - name: Upload iOS IPA
         uses: actions/upload-artifact@v4
         with:
-          name: Voxy-iOS
-          # For iOS, we upload the Runner.app folder content
-          path: build/ios/iphoneos/Runner.app/
-          include-hidden-files: true
-  # --- ANDROID & WEB BUILD ---
+          name: Voxy-iOS-Package
+          path: Voxy-iOS-Unsigned.ipa  # --- ANDROID & WEB BUILD ---
+  
+  
   build-android-web:
     runs-on: ubuntu-latest
     steps:
